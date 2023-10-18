@@ -38,7 +38,35 @@ pub fn run() {
 
   let s8 = String::from("hello");
   let len = calculate_length(&s8);
-  println!("Len of s")
+  println!("The length of {} is {}", s8, len);
+
+  let mut s9 = String::from("hello");
+  change(&mut s9);
+  println!("{}", s9);
+
+  let s10 = String::from("hello");
+  let r1 = &s10;
+  let r2 = &s10;
+  println!("s10: {}, r1: {}, r2: {}", s10, r1, r2);
+
+  // let mut s10 = String::from("hello");
+  // let r1 = &s10;
+  // let r2 = &mut s10; // mutable, immutableな参照は共存できない
+  // println!("{} {} ", r1, r2)
+
+  let mut s11 = String::from("hello");
+  let r1 = &mut s11;
+  println!("{}", r1);
+  println!("{}", s11);
+
+  let mut s12 = String::from("hello");
+  let r1 = &s12;
+  let r2 = &s12;
+  println!("{} {} ", r1, r2);
+  let r3 = &mut s12;
+  *r3 = String::from("hello_update");
+  println!("{}", r3);
+
 }
 
 fn take_ownership(s: String) {
@@ -56,3 +84,8 @@ fn take_giveback_ownership(s: String) -> String {
 fn calculate_length(s: &String) -> usize {
   s.len()
 }
+
+fn change(s: &mut String) {
+  s.push_str("_world");
+}
+
